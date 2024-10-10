@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Web Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(to right, #6a11cb, #2575fc); /* Simple gradient background */
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.5em;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.2); /* Transparent white for better contrast */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    p {
+      font-size: 1.2em;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      .form-container {
+        padding: 15px;
+      }
+
+      input, select, button {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sidewalk Slope Calculator</h1>
+
+  <div class="form-container">
+    <form>
+      <label for="distance">Distance (ft):</label>
+      <input type="number" id="distance" required>
+
+      <label for="elevation">Elevation Difference:</label>
+      <input type="number" id="elevation" required>
+
+      <select id="unit">
+        <option value="feet">Feet</option>
+        <option value="inches">Inches</option>
+      </select>
+
+      <button type="button" onclick="calculateSlope()">Calculate Slope</button>
+    </form>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function calculateSlope() {
+      var distance = document.getElementById("distance").value;
+      var elevation = document.getElementById("elevation").value;
+      var unit = document.getElementById("unit").value;
+
+      // Convert inches to feet if needed
+      if (unit === "inches") {
+        elevation = elevation / 12;
+      }
+
+      // Calculate slope percentage
+      var slope = (elevation / distance) * 100;
+      document.getElementById("result").innerHTML = "Slope: " + slope.toFixed(2) + "%";
+    }
+  </script>
+
+</body>
+</html>
